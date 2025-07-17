@@ -1,5 +1,14 @@
 # 🧠 Design Patterns en Java y Spring Boot
 
+**Referencias**
+
+- [🌱 PlantUML](https://plantuml.com/es/)
+- [Implementing the Strategy Design pattern in Spring Boot](https://medium.com/codex/implementing-the-strategy-design-pattern-in-spring-boot-df3adb9ceb4a)
+- [Refactoring.guru](https://refactoring.guru/es/design-patterns/java)
+- [JavaTechOnline](https://javatechonline.com/java-design-patterns-java/)
+
+---
+
 Este repositorio contiene una colección organizada de patrones de diseño implementados en dos contextos:
 
 - `Java puro`: Implementaciones `sin frameworks`, enfocadas en la lógica esencial del patrón.
@@ -39,7 +48,3 @@ Y cada tipo está implementado en dos formas:
 |                  |              | Template Method         |
 |                  |              | Visitor                 |
 
-**Referencias:**
-
-- [**Refactoring.guru**](https://refactoring.guru/es/design-patterns/java)
-- [**JavaTechOnline**](https://javatechonline.com/java-design-patterns-java/)
