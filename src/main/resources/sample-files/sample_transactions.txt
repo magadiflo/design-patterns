@@ -1,0 +1,4 @@
+ACC001|150.75|2024-01-15 10:30:00|Transferencia entrante
+ACC002|89.50|2024-01-15 11:45:00|Pago servicios
+ACC003|200.00|2024-01-15 14:20:00|Depósito efectivo
+ACC004|-50.00|2024-01-15 15:00:00|Transferencia saliente
