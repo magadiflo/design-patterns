@@ -1,0 +1,5 @@
+id,first_name,last_name,email,registration_date
+CSV_1,Ana,Martínez,ana.martinez@example.com,2024-05-12 08:30:00
+CSV_2,Luis,Gómez,luis.gomez@example.com,2023-11-03 14:15:00
+CSV_3,Carmen,Delgado,carmen.delgado@example.com,2022-07-20 09:45:00
+CSV_4,Pedro,Ruiz,pedro.ruiz@example.com,2023-01-01 12:00:00

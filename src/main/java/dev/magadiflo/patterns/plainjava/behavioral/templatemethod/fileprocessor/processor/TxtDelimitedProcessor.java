@@ -69,7 +69,8 @@ public class TxtDelimitedProcessor extends FileProcessor<TxtRecord> {
             int lineNumber = 0;
 
             if (this.hasHeader) {
-                reader.readLine(); // Se puede guardar el header si es necesario
+                String headers = reader.readLine();
+                log.info("headers: {}", headers);
                 lineNumber++;
             }
 
