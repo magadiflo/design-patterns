@@ -1,4 +1,4 @@
-package dev.magadiflo.patterns.springboot.behavioral.templatemethod.fileprocessor.model;
+package dev.magadiflo.patterns.springboot.behavioral.templatemethod.fileprocessor.enums;
 
 import lombok.Getter;
 

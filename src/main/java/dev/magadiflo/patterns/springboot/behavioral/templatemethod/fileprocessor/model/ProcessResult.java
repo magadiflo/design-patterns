@@ -5,13 +5,14 @@ public record ProcessResult(String batchId,
                             String errorMessage,
                             int totalRecords,
                             int processedRecords,
-                            int invalidRecords) {
+                            int invalidRecords,
+                            FileStorageInfo sourceInfo) {
 
-    public static ProcessResult success(String batchId, int total, int processed, int invalid) {
-        return new ProcessResult(batchId, true, null, total, processed, invalid);
+    public static ProcessResult success(String batchId, int total, int processed, int invalid, FileStorageInfo sourceInfo) {
+        return new ProcessResult(batchId, true, null, total, processed, invalid, sourceInfo);
     }
 
-    public static ProcessResult failure(String batchId, String errorMessage) {
-        return new ProcessResult(batchId, false, errorMessage, 0, 0, 0);
+    public static ProcessResult failure(String batchId, String errorMessage, FileStorageInfo sourceInfo) {
+        return new ProcessResult(batchId, false, errorMessage, 0, 0, 0, sourceInfo);
     }
 }
