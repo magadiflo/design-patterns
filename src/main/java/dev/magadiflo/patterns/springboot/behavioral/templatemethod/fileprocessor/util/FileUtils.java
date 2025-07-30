@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.Comparator;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -19,23 +20,40 @@ public class FileUtils {
 
     public static Path retrieveAsTempFile(InputStream inputStream, String filename) {
         try (InputStream is = inputStream) {
-            Path tempFile = Files.createTempFile("temp_", "_" + filename);
-            Files.copy(is, tempFile, StandardCopyOption.REPLACE_EXISTING);
-            return tempFile;
+            Path tempDir = Files.createTempDirectory("file_processor");
+            Path fullPathTempFile = tempDir.resolve(filename);
+            Files.copy(is, fullPathTempFile, StandardCopyOption.REPLACE_EXISTING);
+            return fullPathTempFile;
         } catch (IOException e) {
             throw new FileProcessorException("Error al recuperar archivo temporal: " + e.getMessage());
         }
     }
 
     public static void deleteTempFile(Path path) {
-        if (Objects.isNull(path)) return;
+        if (Objects.isNull(path)) {
+            log.warn("El path es null. No hay archivo temporal qué eliminar");
+            return;
+        }
+
+        Path parentTempDir = path.getParent();
+        if (Objects.isNull(parentTempDir) || !Files.exists(parentTempDir)) {
+            log.warn("El directorio temporal no existe: {}", parentTempDir);
+            return;
+        }
+
         try {
-            if (Files.exists(path)) {
-                Files.delete(path);
-                log.debug("Archivo temporal eliminado: {}", path);
-            }
+            Files.walk(parentTempDir)
+                    .sorted(Comparator.reverseOrder()) // Elimina primero los archivos, luego los directorios
+                    .forEach(pathTemp -> {
+                        try {
+                            Files.delete(pathTemp);
+                            log.info("Eliminado: {}", pathTemp);
+                        } catch (IOException e) {
+                            log.warn("No se pudo eliminar: {}", pathTemp, e);
+                        }
+                    });
         } catch (IOException e) {
-            log.warn("No se pudo eliminar archivo temporal: {}", path, e);
+            log.warn("Error al recorrer/eliminar el directorio temporal: {}", parentTempDir, e);
         }
     }
 

@@ -25,15 +25,15 @@ public abstract class FileProcessor<T extends ParsedRecord> {
 
         // Paso 1: Validar archivo a procesar
         this.validateMultipartFile(multipartFile);
-        log.info("Archivo original {} validado correctamente", multipartFile.getOriginalFilename());
+        log.info("Archivo {} validado correctamente", multipartFile.getOriginalFilename());
 
         // Paso 2: Almacenar el archivo y generar uno temporal
         FileStorageInfo fileStorageInfo = this.fileStorageService.storeFile(multipartFile, batchId);
-        log.info("Archivo a procesar {} almacenado correctamente", fileStorageInfo.filename());
+        log.info("Archivo {} guardado con éxito como {}", multipartFile.getOriginalFilename(), fileStorageInfo.filename());
 
         InputStream inputStream = this.fileStorageService.retrieveFileContent(fileStorageInfo);
         Path pathTempFile = FileUtils.retrieveAsTempFile(inputStream, fileStorageInfo.filename());
-        log.info("Procesando archivo desde: {}", pathTempFile.toString());
+        log.info("Procesando archivo desde: {}", pathTempFile);
 
         // Paso 3: Validar estructura del archivo
         log.info("Paso 3, en construcción...");
