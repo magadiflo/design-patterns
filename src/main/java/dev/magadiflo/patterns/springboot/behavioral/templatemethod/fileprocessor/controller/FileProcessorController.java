@@ -1,7 +1,7 @@
 package dev.magadiflo.patterns.springboot.behavioral.templatemethod.fileprocessor.controller;
 
 import dev.magadiflo.patterns.springboot.behavioral.templatemethod.fileprocessor.model.TxtRecord;
-import dev.magadiflo.patterns.springboot.behavioral.templatemethod.fileprocessor.service.FileProcessor;
+import dev.magadiflo.patterns.springboot.behavioral.templatemethod.fileprocessor.processor.FileProcessor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
