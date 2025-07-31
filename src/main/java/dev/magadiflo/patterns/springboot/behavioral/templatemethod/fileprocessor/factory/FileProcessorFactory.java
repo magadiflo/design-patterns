@@ -38,7 +38,7 @@ public class FileProcessorFactory {
     }
 
     public Set<FileType> getSupportedFileTypes() {
-        return processors.keySet();
+        return this.processors.keySet();
     }
 
 }

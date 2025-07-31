@@ -74,14 +74,15 @@ public class FileProcessingServiceImpl implements FileProcessingService {
             }
         }
 
-        throw new FileProcessorException("No se pudo determinar el tipo de archivo. MIME: %s, Filename: %s".
-                formatted(mimeType, filename));
+        throw new FileProcessorException(
+                "Tipo de archivo no reconocido en el sistema. MIME: %s, Archivo: %s. Extensiones soportadas: %s"
+                        .formatted(mimeType, filename, this.getSupportedFileTypes()));
     }
 
     private void validateSupportedFileType(FileType fileType) {
-        Set<FileType> supportedFileTypes = this.fileProcessorFactory.getSupportedFileTypes();
+        Set<FileType> supportedFileTypes = this.getSupportedFileTypes();
         if (!supportedFileTypes.contains(fileType)) {
-            throw new FileProcessorException("Tipo de archivo no soportado: %s. Tipos soportados: %s"
+            throw new FileProcessorException("No se encontró un processor para procesar archivos %s. Tipos soportados: %s"
                     .formatted(fileType, supportedFileTypes));
         }
         log.debug("Tipo de archivo {} es soportado", fileType);

@@ -1,5 +1,8 @@
 package dev.magadiflo.patterns.springboot.behavioral.templatemethod.fileprocessor.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public record ProcessResult(String batchId,
                             boolean success,
                             String errorMessage,

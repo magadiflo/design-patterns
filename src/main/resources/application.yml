@@ -6,3 +6,7 @@ server:
 spring:
   application:
     name: design-patterns
+
+logging:
+  level:
+    dev.magadiflo.patterns: debug

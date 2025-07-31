@@ -29,7 +29,7 @@ public class TxtDelimitedProcessor extends FileProcessor<TxtRecord> {
 
     private final String delimiter = "|";
     private final boolean hasHeader = false;
-    private final int expectedColumns = 5;
+    private final int expectedColumns = 4;
 
     public TxtDelimitedProcessor(FileStorageService fileStorageService) {
         super(fileStorageService);
