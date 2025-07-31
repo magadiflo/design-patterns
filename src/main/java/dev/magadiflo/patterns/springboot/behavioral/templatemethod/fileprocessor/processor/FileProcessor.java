@@ -1,5 +1,6 @@
 package dev.magadiflo.patterns.springboot.behavioral.templatemethod.fileprocessor.processor;
 
+import dev.magadiflo.patterns.springboot.behavioral.templatemethod.fileprocessor.enums.FileType;
 import dev.magadiflo.patterns.springboot.behavioral.templatemethod.fileprocessor.exception.FileProcessorException;
 import dev.magadiflo.patterns.springboot.behavioral.templatemethod.fileprocessor.model.BusinessValidationResult;
 import dev.magadiflo.patterns.springboot.behavioral.templatemethod.fileprocessor.model.FileStorageInfo;
@@ -113,8 +114,8 @@ public abstract class FileProcessor<T extends ParsedRecord> {
             throw new FileProcessorException("El archivo no tiene una extensión válida");
         }
 
-        if (!this.expectedExtension().equalsIgnoreCase(FileUtils.getFileExtension(multipartFile))) {
-            throw new FileProcessorException("Se esperaba un archivo con extensión: " + this.expectedExtension());
+        if (!this.expectedFileType().getExtension().equalsIgnoreCase(FileUtils.getFileExtension(multipartFile))) {
+            throw new FileProcessorException("Se esperaba un archivo con extensión: " + this.expectedFileType().getExtension());
         }
     }
 
@@ -143,7 +144,7 @@ public abstract class FileProcessor<T extends ParsedRecord> {
     }
 
     // ============== MÉTODOS ABSTRACTOS (específicos por tipo de archivo) ==============
-    protected abstract String expectedExtension();
+    public abstract FileType expectedFileType();
 
     protected abstract ValidationResult validateFileStructure(Path path);
 

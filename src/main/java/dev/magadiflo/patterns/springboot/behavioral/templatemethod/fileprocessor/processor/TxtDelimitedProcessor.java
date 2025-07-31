@@ -36,8 +36,8 @@ public class TxtDelimitedProcessor extends FileProcessor<TxtRecord> {
     }
 
     @Override
-    protected String expectedExtension() {
-        return FileType.TXT.getExtension();
+    public FileType expectedFileType() {
+        return FileType.TXT;
     }
 
     @Override
