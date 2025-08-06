@@ -24,7 +24,7 @@ public class OrderProcessingClient {
         log.info("Destination: {}", order.shippingAddress().city());
         log.info("===========================");
 
-        // Iniciando cadena de validación
+        // Construcción e invocación de la cadena
         OrderValidationHandler handlerChain = this.buildValidationChain();
         ValidationResult result = handlerChain.handle(order);
 
@@ -46,20 +46,19 @@ public class OrderProcessingClient {
      * Nota: El orden es fundamental en las validaciones empresariales.
      */
     private OrderValidationHandler buildValidationChain() {
-        // Crea todos los handlers concretos
+        // Instancia de handlers concretos
         OrderValidationHandler customerValidator = new CustomerValidationHandler(new CustomerService());
         OrderValidationHandler stockValidator = new StockValidationHandler(new ProductService());
         OrderValidationHandler addressValidator = new AddressValidationHandler(new AddressService());
         OrderValidationHandler hoursValidator = new BusinessHoursValidatorHandler();
 
-        // Componga la cadena usando el method setNext (que devuelve el controlador para el encadenamiento)
+        // Encadenamiento de responsabilidades
         customerValidator
                 .setNext(stockValidator)
                 .setNext(addressValidator)
                 .setNext(hoursValidator);
 
-        // retorna el PRIMER handler de la cadena
-        return customerValidator;
+        return customerValidator; // Primer eslabón de la cadena
     }
 
 }
