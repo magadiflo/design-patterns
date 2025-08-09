@@ -1,6 +1,6 @@
 package dev.magadiflo.patterns.springboot.behavioral.chainofresponsibility.ordervalidation.service;
 
-import dev.magadiflo.patterns.plainjava.behavioral.chainofresponsibility.ordervalidation.model.Customer;
+import dev.magadiflo.patterns.springboot.behavioral.chainofresponsibility.ordervalidation.entity.Customer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
