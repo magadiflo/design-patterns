@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @Configuration
 public class OrderValidationConfig {
-    @Bean
+    @Bean(value = "orderValidationChain")
     public OrderValidationHandler orderValidationHandler(CustomerValidationHandler customerValidator,
                                                          StockValidationHandler stockValidator,
                                                          AddressValidationHandler addressValidator,

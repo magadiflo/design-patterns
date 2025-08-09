@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public record PurchaseOrder(@NotNull
@@ -18,4 +19,10 @@ public record PurchaseOrder(@NotNull
                             @NotNull
                             @Valid
                             ShippingAddress shippingAddress) {
+
+    public BigDecimal getTotalAmount() {
+        return this.items.stream()
+                .map(OrderItem::getSubTotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 }
