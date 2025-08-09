@@ -1,37 +1,25 @@
 package dev.magadiflo.patterns.springboot.behavioral.chainofresponsibility.ordervalidation.handler;
 
 import dev.magadiflo.patterns.springboot.behavioral.chainofresponsibility.ordervalidation.dto.request.PurchaseOrder;
-import dev.magadiflo.patterns.springboot.behavioral.chainofresponsibility.ordervalidation.entity.Product;
-import dev.magadiflo.patterns.springboot.behavioral.chainofresponsibility.ordervalidation.exception.InsufficientStockException;
-import dev.magadiflo.patterns.springboot.behavioral.chainofresponsibility.ordervalidation.exception.ProductNotFoundException;
-import dev.magadiflo.patterns.springboot.behavioral.chainofresponsibility.ordervalidation.service.ProductService;
+import dev.magadiflo.patterns.springboot.behavioral.chainofresponsibility.ordervalidation.exception.InvalidShippingAddressException;
+import dev.magadiflo.patterns.springboot.behavioral.chainofresponsibility.ordervalidation.service.AddressService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-
-import java.util.Objects;
 
 @Slf4j
 @RequiredArgsConstructor
 @Component
 public class AddressValidationHandler extends BaseOrderValidationHandler {
 
-    private final ProductService productService;
+    private final AddressService addressService;
 
     @Override
     protected void doHandle(PurchaseOrder order) {
-        log.info("[StockValidation] Verificando disponibilidad de productos");
-        order.items().forEach(orderItem -> {
-            Product product = this.productService.findById(orderItem.productId());
-            if (Objects.isNull(product)) {
-                throw new ProductNotFoundException(orderItem.productId());
-            }
-
-            if (orderItem.quantity() > product.getAvailableStock()) {
-                throw new InsufficientStockException(product.getName(), product.getAvailableStock(), orderItem.quantity());
-            }
-            log.info("[StockValidation] Stock OK para {} (Disponible: {}, Solicitado: {})",
-                    product.getName(), product.getAvailableStock(), orderItem.quantity());
-        });
+        log.info("[AddressValidation] Verificando: {}, {}", order.shippingAddress().city(), order.shippingAddress().country());
+        if (!this.addressService.isValidAddress(order.shippingAddress())) {
+            throw new InvalidShippingAddressException();
+        }
+        log.info("[AddressValidation] Dirección válida para el envío");
     }
 }
