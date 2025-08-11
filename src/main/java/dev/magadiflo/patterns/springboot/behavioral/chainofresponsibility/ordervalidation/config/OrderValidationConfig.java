@@ -23,6 +23,7 @@ public class OrderValidationConfig {
                 .setNext(addressValidator)
                 .setNext(hoursValidator);
 
+        log.info("Retornando referencia del primer handler de la cadena (punto de entrada): {}", customerValidator.getClass().getSimpleName());
         return customerValidator;
     }
 }
