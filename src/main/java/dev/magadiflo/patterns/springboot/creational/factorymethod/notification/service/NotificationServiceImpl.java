@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Slf4j
 @Service
 public class NotificationServiceImpl implements NotificationService {
@@ -36,12 +38,11 @@ public class NotificationServiceImpl implements NotificationService {
             creator.processNotification(request.message(), request.recipient());
 
             log.info("Notificación enviada exitosamente vía {} a {}", request.channel(), request.recipient());
-            return NotificationResponse.success("Notificación enviada exitosamente", request.channel(), request.recipient());
+            return new NotificationResponse("Notificación enviada exitosamente", request.channel(), request.recipient(), LocalDateTime.now());
         } catch (Exception e) {
-
-            log.error("No se pudo enviar la notificación {} a {}: {}",
-                    request.channel(), request.recipient(), e.getMessage());
-            return NotificationResponse.failure("No se pudo enviar la notificación: " + e.getMessage(), request.channel(), request.recipient());
+            final String message = "No se pudo enviar la notificación";
+            log.error(message.concat(" {} a {}: {}"), request.channel(), request.recipient(), e.getMessage());
+            throw new IllegalArgumentException(message.concat(" %s a %s: %s").formatted(request.channel(), request.recipient(), e.getMessage()));
         }
     }
 
