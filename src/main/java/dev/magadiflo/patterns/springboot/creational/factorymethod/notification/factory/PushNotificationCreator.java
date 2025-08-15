@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
-@Service
+@Service("pushNotificationCreator")
 public class PushNotificationCreator extends NotificationCreator {
 
     private final PushNotification pushNotification;

@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
-@Service
+@Service("smsNotificationCreator")
 public class SMSNotificationCreator extends NotificationCreator {
 
     private final SMSNotification smsNotification;

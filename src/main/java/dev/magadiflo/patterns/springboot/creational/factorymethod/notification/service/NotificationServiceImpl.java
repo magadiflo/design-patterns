@@ -20,7 +20,7 @@ public class NotificationServiceImpl implements NotificationService {
     private final NotificationCreator whatsAppCreator;
 
     public NotificationServiceImpl(@Qualifier("emailNotificationCreator") NotificationCreator emailCreator,
-                                   @Qualifier("sMSNotificationCreator") NotificationCreator smsCreator,
+                                   @Qualifier("smsNotificationCreator") NotificationCreator smsCreator,
                                    @Qualifier("pushNotificationCreator") NotificationCreator pushCreator,
                                    @Qualifier("whatsAppNotificationCreator") NotificationCreator whatsAppCreator) {
         this.emailCreator = emailCreator;

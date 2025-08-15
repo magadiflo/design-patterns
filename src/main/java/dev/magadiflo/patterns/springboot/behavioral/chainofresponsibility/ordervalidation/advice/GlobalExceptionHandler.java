@@ -18,7 +18,7 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 @Slf4j
-@RestControllerAdvice
+@RestControllerAdvice(basePackages = "dev.magadiflo.patterns.springboot.behavioral.chainofresponsibility.ordervalidation")
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(BusinessValidationException.class)

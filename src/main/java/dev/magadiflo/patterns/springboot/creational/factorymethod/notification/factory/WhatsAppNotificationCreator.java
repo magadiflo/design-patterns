@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
-@Service
+@Service("whatsAppNotificationCreator")
 public class WhatsAppNotificationCreator extends NotificationCreator {
 
     private final WhatsAppNotification whatsAppNotification;
