@@ -27,7 +27,7 @@ public class WhatsAppNotification implements Notification {
 
     @Override
     public NotificationChannel getChannel() {
-        return NotificationChannel.PUSH;
+        return NotificationChannel.WHATSAPP;
     }
 
     private void simulateWhatsAppSending(String message, String recipient) {
