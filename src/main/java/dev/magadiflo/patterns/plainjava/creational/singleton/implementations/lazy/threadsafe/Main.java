@@ -12,7 +12,8 @@ public class Main {
         try (ExecutorService executorService = Executors.newFixedThreadPool(10)) {
             IntStream.range(0, 10).forEach(value -> {
                 Runnable task = () -> {
-                    Logger instance = Logger.getInstance();
+//                    Logger instance = Logger.getInstance();
+                    CacheManager instance = CacheManager.getInstance();
                     log.info("Thread-{} -> {}", value, System.identityHashCode(instance));
                 };
                 executorService.submit(task);
