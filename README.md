@@ -32,19 +32,32 @@ Y cada tipo está implementado en dos formas:
 | `plainjava/`  | Implementaciones en Java puro, sin dependencias externas.                                          |
 | `springboot/` | Implementaciones usando Spring Boot, aprovechando inyección de dependencias, eventos, scopes, etc. |
 
-## 23 patrones de diseño de GoF (Gang Of Four)
+## 🎯 23 Patrones de Diseño GoF (Gang of Four)
 
-| `Creational`     | `Structural` | `Behavioral`            |
-|------------------|--------------|-------------------------|
-| Singleton        | Adapter      | Chain of Responsibility |
-| Factory Method   | Bridge       | Command                 |
-| Abstract Factory | Composite    | Interpreter             |
-| Builder          | Decorator    | Iterator                |
-| Prototype        | Facade       | Mediator                |
-|                  | Flyweight    | Memento                 |
-|                  | Proxy        | Observer                |
-|                  |              | State                   |
-|                  |              | Strategy                |
-|                  |              | Template Method         |
-|                  |              | Visitor                 |
+Este proyecto explora e implementa varios patrones de diseño de software propuestos por el `Gang of Four (GoF)`,
+organizados en tres categorías principales:
 
+- 🧱 `Creational (Creacionales)` → Enfocados en la creación de objetos.
+- 🏗️ `Structural (Estructurales)` → Tratan sobre la composición de clases y objetos.
+- ⚙️ `Behavioral (De Comportamiento)` → Se centran en la comunicación y responsabilidades entre objetos.
+
+| `Creational`      | `Structural` | `Behavioral`             |
+|-------------------|--------------|--------------------------|
+| ✅Singleton        | ✅Adapter     | ✅Chain of Responsibility |
+| ✅Factory Method   | ⬜Bridge      | ⬜Command                 |
+| ⬜Abstract Factory | ⬜Composite   | ⬜Interpreter             |
+| ✅Builder          | ⬜Decorator   | ⬜Iterator                |
+| ⬜Prototype        | ⬜Facade      | ⬜Mediator                |
+|                   | ⬜Flyweight   | ⬜Memento                 |
+|                   | ✅Proxy       | ✅Observer                |
+|                   |              | ⬜State                   |
+|                   |              | ✅Strategy                |
+|                   |              | ✅Template Method         |
+|                   |              | ⬜Visitor                 |
+
+### 📘 Leyenda
+
+| Símbolo | Significado                              |
+|---------|------------------------------------------|
+| ✅       | Patrón **implementado** en este proyecto |
+| ⬜       | Patrón **no implementado (por ahora)**   |
